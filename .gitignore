@@ -1,0 +1,11 @@
+# python cache files
+*.pyc
+
+# vim swap files
+*.swp
+*~
+
+# pytorch model files
+*.pth
+
+tmp/*.png
