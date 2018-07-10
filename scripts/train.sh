@@ -5,7 +5,7 @@
 set -x   #把本行后的脚本执行内容，打印到屏幕。用于调试
 set -e   #本行后，如果某行执行结果返回值不是true，那么终止
 
-LOG="log.train.2018.07.09"
+LOG="log/train_log.`date +'%Y-%m-%d_%H-%M-%S'`"
 touch $LOG
 rm $LOG
 

@@ -58,7 +58,7 @@ for i, image in enumerate(test_loader):
     final_output = output[5].cpu()
 
     print(i)
-    fn = name[0]
+    fn = name[0].split('/')[-1]
 
     save_dir = 'test/'
     save_side1 = save_dir + '1/'
