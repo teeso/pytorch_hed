@@ -16,6 +16,8 @@ import torch.nn.init as init
 import torch.nn.functional as F
 import utils.utils as utils
 
+from config import cfg
+
 
 parser = argparse.ArgumentParser(description='train hed model')
 parser.add_argument('--batchSize', type=int, default=1, help='with batchSize=1 equivalent to instance normalization.')
@@ -49,7 +51,7 @@ target_transform = transforms.Compose([
             ])
 
 ###########   DATASET   ###########
-data = BSDS500(transform=transform, target_transform=target_transform)
+data = BSDS500(dataPath=cfg.dataPath, transform=transform, target_transform=target_transform)
 train_loader = torch.utils.data.DataLoader(dataset=data,
                                            batch_size=opt.batchSize,
                                            shuffle=True,

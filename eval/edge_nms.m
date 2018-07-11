@@ -1,17 +1,17 @@
 clear; clc;
 
-%path_to_pdollar = '/media/liuyun/data/Code/edges';
+path_to_pdollar = '/opt/work/pytorch_hed/external/toolbox';
 
 % folder that RCF network output saved
-path_to_input = '/opt/data/HED-BSDS/test-fcn';
+path_to_input = '/opt/work/pytorch_hed/test/fuse';
 
 % folder that nms-ed RCF output to be saved in
-path_to_output = '/opt/data/HED-BSDS/test-fcn-nms';
+path_to_output = '/opt/work/pytorch_hed/test/fuse-nms';
 
-%addpath(genpath(path_to_pdollar));
+addpath(genpath(path_to_pdollar));
 mkdir(path_to_output);
 
-iids = dir(fullfile(path_to_input, '*_fuse.png'));
+iids = dir(fullfile(path_to_input, '*.jpg'));
 for i = 1:length(iids)
     edge = imread(fullfile(path_to_input, iids(i).name));
     edge = 1-single(edge)/255;
@@ -23,6 +23,6 @@ for i = 1:length(iids)
     % 2 for BSDS500 and Multi-cue datasets, 4 for NYUD dataset
     edge = edgesNmsMex(edge, O, 2, 5, 1.01, 8);
     
-    imwrite(edge, fullfile(path_to_output, [iids(i).name(1:end-9) '.png']));
+    imwrite(edge, fullfile(path_to_output, [iids(i).name(1:end-4) '.png']));
     
 end

@@ -7,10 +7,10 @@ gtDir = '/opt/work/pytorch_hed/external/BSR/BSDS500/data/groundTruth/test';
 %inDir = '../BSDS500/ucm2/test';
 %outDir = '../BSDS500/ucm2/test_eval';
 
-inDir = '/opt/data/HED-BSDS/test-fcn-nms';
-outDir = '/opt/data/HED-BSDS/RCF-eval';
+inDir = '/opt/work/pytorch_hed/test/fuse-nms';
+outDir = '/opt/work/pytorch_hed/test/fuse-nms-eval';
 
-%mkdir(outDir);
+mkdir(outDir);
 
 % running all the benchmarks can take several hours.
 tic;

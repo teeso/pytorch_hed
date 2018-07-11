@@ -14,6 +14,8 @@ from torch.autograd import Variable
 from utils.dataset import BSDS500_TEST
 from models.hed import HED
 
+from config import cfg
+
 mean=[0.485, 0.456, 0.406]
 std=[0.229, 0.224, 0.225]
 
@@ -22,18 +24,18 @@ transform = transforms.Compose([
                 transforms.ToTensor(),
                 transforms.Normalize(mean,std)
             ])
-data = BSDS500_TEST(transform=transform)
+data = BSDS500_TEST(dataPath=cfg.dataPath, transform=transform)
 test_loader = torch.utils.data.DataLoader(dataset=data,
                                            batch_size=1,
                                            shuffle=True,
                                            num_workers=2)
 
-torch.cuda.set_device(1)
+torch.cuda.set_device(0)
 
 net = HED()
 net.cuda()
 
-net.load_state_dict(torch.load('checkpoints/hed_1.pth'))
+net.load_state_dict(torch.load('checkpoints/hed_15.pth'))
 
 print(net)
 
@@ -57,7 +59,7 @@ for i, image in enumerate(test_loader):
     side_output5 = output[4].cpu()
     final_output = output[5].cpu()
 
-    print(i)
+    print('DO inference on {:d}-th image'.format(i+1))
     fn = name[0].split('/')[-1]
 
     save_dir = 'test/'
